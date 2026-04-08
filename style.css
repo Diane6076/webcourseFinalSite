@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+    margin-top: 100px;
+    background-color: lightpink;
+}
+
+h1 {
+    color: black;
+}
+
+button {
+    background-color: hotpink;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: brown;
+
+}
