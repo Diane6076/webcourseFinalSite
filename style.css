@@ -1,23 +1,455 @@
+:root {
+    --bg-color: #e0e5ec;
+    /* Світло-сірий спокійний відтінок */
+    --text-color: #333;
+    --accent-color: #a8dadc;
+    /* Ніжний бірюзовий для акцентів */
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    /* Основа для матового скла */
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    text-align: center;
-    margin-top: 100px;
-    background-color: lightpink;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+    /* Запобігає появі горизонтальної смуги прокрутки */
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
-h1 {
-    color: black;
+/* Фон із зображенням */
+.bg-image {
+    position: fixed;
+    /* Фіксує фон, щоб він не рухався при скролі */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* Розтягує на всю ширину вікна */
+    height: 100vh;
+    /* Розтягує на всю висоту вікна */
+    background-image: url('bg-image.jpg');
+    /* Перевір, чи назва файлу збігається */
+    background-size: cover;
+    /* Масштабує фото так, щоб заповнити все, не розтягуючи */
+    background-position: center;
+    /* Центрує зображення */
+    background-repeat: no-repeat;
+    filter: blur(5px) brightness(0.7);
+    /* Твій ефект розмиття */
+    z-index: -1;
+    /* Ховає картинку за контент */
+
 }
 
-button {
-    background-color: hotpink;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+/* Глобальні стилі матового скла */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    /* Ефект розмиття скла */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+}
+
+/* Контейнер */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    max-width: 1000px;
+    /* Прибираємо фіксовану висоту 85vh, щоб контейнер ріс разом з текстом */
+    min-height: 90vh;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+
+/* Навігаційне меню */
+.nav-menu {
+    padding: 15px;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
     cursor: pointer;
+    border-bottom: 2px solid transparent;
 }
 
-button:hover {
-    background-color: brown;
+.nav-link:hover,
+.nav-link.active {
+    color: #000;
+    border-bottom: 2px solid var(--accent-color);
+}
 
+/* Основний контент */
+
+
+/* Онови цей блок */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    /* Прибираємо обмеження скролу, щоб все було видно відразу */
+    overflow-y: visible;
+}
+
+/* Секції контенту (ховаємо за замовчуванням) */
+.content-section {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Стан активної секції */
+.content-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Стилізація тексту */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: #eee;
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: #fff;
+    border-left: 5px solid var(--accent-color);
+    padding-left: 15px;
+    text-align: left;
+}
+
+h3 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+p {
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #f0f0f0;
+    font-weight: 300;
+}
+
+/* Кнопка */
+.btn {
+    background-color: var(--accent-color);
+    color: #333;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background-color: #8ecae6;
+}
+
+/* Зображення на головній */
+.home-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--glass-border);
+    margin-bottom: 20px;
+}
+
+/* Гріди для секцій */
+.features-grid,
+.calm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature-item,
+.calm-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    transition: transform 0.3s ease;
+    text-align: left;
+}
+
+.feature-item:hover,
+.calm-card:hover {
+    transform: scale(1.03);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.calm-content {
+    text-align: left;
+}
+
+/* Адаптивність Mobile-first */
+.container {
+    width: 95%;
+    /* На мобільних майже на весь екран */
+    margin: 10px auto;
+    height: auto;
+    /* На мобільних контент може бути довгим */
+    min-height: 90vh;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 80%;
+        max-width: 1000px;
+        height: 85vh;
+        /* На ПК фіксована висота зі скролом */
+    }
+}
+
+/* 
+/* Стилі для Акордеона (те, що розкривається) */
+/* .accordion-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+}
+
+.accordion-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    transition: background 0.3s;
+    color: #fff;
+}
+
+.accordion-header:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.3s ease;
+    padding: 0 20px;
+}
+
+.accordion-item.active .accordion-content {
+    max-height: 500px;
+    /* Достатньо для тексту */
+/* padding: 15px 20px;
+}
+
+.accordion-item.active .accordion-header span {
+    transform: rotate(45deg);
+} */
+
+.quote-box {
+    margin: 20px auto;
+    padding: 30px;
+    /* Трохи більше відступів */
+    width: 90%;
+    /* Адаптивна ширина для мобільних */
+    max-width: 550px;
+    /* Максимальна ширина для ПК */
+
+    /* ФІКСОВАНА ВИСОТА */
+    min-height: 250px;
+    /* Задай таку висоту, щоб входила найдовша цитата */
+
+    border-radius: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow);
+
+    /* ВИРІВНЮВАННЯ ВМІСТУ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Центрує текст по вертикалі */
+    align-items: center;
+    /* Центрує текст по горизонталі */
+    text-align: center;
+
+    /* Додаємо плавний перехід для змін тексту, якщо ти використовуєш JS анімацію */
+    transition: all 0.4s ease;
+}
+
+#quote-text {
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#quote-author {
+    display: block;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.mini-btn {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.mini-btn:hover {
+    background: var(--accent-color);
+    color: #333;
+}
+
+/* Стилі чату */
+#ai-chat-container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+#chat-trigger-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+
+#chat-trigger-btn:hover {
+    transform: scale(1.1);
+}
+
+#chat-window {
+    width: 300px;
+    height: 400px;
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+    padding: 0;
+    /* Прибираємо внутрішні відступи для чату */
+}
+
+.chat-hidden {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+    pointer-events: none;
+}
+
+.chat-header {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+#chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bot-msg,
+.user-msg {
+    padding: 8px 12px;
+    border-radius: 12px;
+    max-width: 80%;
+    font-size: 0.9rem;
+}
+
+.bot-msg {
+    background: rgba(255, 255, 255, 0.2);
+    align-self: flex-start;
+    color: white;
+}
+
+.user-msg {
+    background: var(--accent-color);
+    align-self: flex-end;
+    color: #333;
+}
+
+.chat-input-area {
+    padding: 10px;
+    display: flex;
+    gap: 5px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.chat-input-area input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 5px 10px;
+    color: white;
+}
+
+#send-btn {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 1.2rem;
 }

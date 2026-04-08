@@ -3,15 +3,112 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lotus Steps | Buddha Mind</title>
 </head>
 
 <body>
 
+    <div class="bg-image"></div>
 
+    <div class="container">
 
+        <nav class="glass-panel nav-menu">
+            <ul>
+                <li><a href="index.html" class="nav-link active" data-section="home">Головна</a></li>
+                <li><a href="index2.html" class="nav-link" data-section="philosophy">Філософія</a></li>
+                <li><a href="index3.html" class="nav-link" data-section="calm">Як це заспокоює</a></li>
+            </ul>
+        </nav>
+
+        <main class="glass-panel main-content">
+
+            <section id="home" class="content-section active">
+                <h1>Lotus Steps</h1>
+                <p class="subtitle">Шлях до розуму Будди</p>
+                <img src="bg-image2.jpg" alt="Силует Будди" class="home-img">
+                <p>Вітаємо у просторі усвідомленості. Цей сайт створено, щоб допомогти вам знайти внутрішній спокій та
+                    зрозуміти базові принципи філософії буддизму через метафору кроків лотоса.</p>
+                <div class="glass-panel quote-box">
+                    <p id="quote-text">"Мудрість приходить через тишу..."</p>
+                    <small id="quote-author">— Будда</small>
+                    <button id="new-quote-btn" class="mini-btn">Отримати нову пораду</button>
+                </div>
+                <a href="#philosophy" class="btn">Почати шлях</a>
+            </section>
+
+            <section id="philosophy" class="content-section">
+                <h2>Спектори Філософії</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <h3>Чотири Благородні Істини</h3>
+                        <p>Фундамент вчення про природу страждання та шлях до його припинення.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Восьмиричний Шлях</h3>
+                        <p>Практичний посібник для етичного життя, ментальної дисципліни та мудрості.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Усвідомленість (Mindfulness)</h3>
+                        <p>Жити в поточному моменті, помічаючи думки без осуду.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h3>Співчуття (Karuna)</h3>
+                        <p>Бажання звільнити себе та інших від страждань.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="calm" class="content-section">
+                <h2>Мистецтво Спокою</h2>
+                <div class="calm-content">
+                    <div class="text-block">
+                        <h3>Як це працює?</h3>
+                        <p>Філософія буддизму не просто теорія, це інструментарій для розуму. Вона вчить нас не
+                            реагувати автоматично на емоції, а спостерігати за ними. Це створює простір між подією та
+                            нашою реакцією.</p>
+                    </div>
+                    <div class="calm-grid">
+                        <div class="calm-card">
+                            <h4>Медитація</h4>
+                            <p>Заспокоює нервову систему, тренує фокус.</p>
+                        </div>
+                        <div class="calm-card">
+                            <h4>Прийняття</h4>
+                            <p>Припиняє внутрішню боротьбу з реальністю.</p>
+                        </div>
+                        <div class="calm-card">
+                            <h4>Неприв'язаність</h4>
+                            <p>Звільняє від страху втрати та тривоги.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <div id="ai-chat-container">
+        <div id="chat-window" class="glass-panel chat-hidden">
+            <div class="chat-header">
+                <span>Lotus AI Помічник</span>
+                <button id="close-chat">×</button>
+            </div>
+            <div id="chat-messages">
+                <div class="bot-msg">Вітаю, Ді! Я твій провідник у світ спокою. Запитай мене про що завгодно.</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="Напишіть запитання...">
+                <button id="send-btn">➤</button>
+            </div>
+        </div>
+        <button id="chat-trigger-btn">💬</button>
+    </div>
 
 
     <script src="script.js"></script>
